@@ -16,7 +16,7 @@ namespace C__project
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new  Client_Dash());
+            Application.Run(new  Log_in());
         }
     }
 
