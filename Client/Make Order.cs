@@ -80,7 +80,7 @@ namespace C__project.Client
                 textBox3.Text = pricePerUnit.ToString("F2");
                 textBox4.Text = totalPrice.ToString("F2");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // Handle any calculation errors
                 textBox3.Text = "";
