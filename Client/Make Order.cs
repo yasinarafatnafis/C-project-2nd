@@ -143,13 +143,13 @@ namespace C__project.Client
                 {
                     // Using parameterized query to prevent SQL injection
                     int rowsAffected = dataAccess.ExecuteDMLQuery(
-    $@"INSERT INTO [office management studio].[dbo].[Make Order] ([Client Id], [Order item], [Quantity], [Quality], [Deadline], [Total price]) 
-       VALUES ('{textBox1.Text.Replace("'", "''")}', 
-               '{comboBox1.SelectedItem.ToString().Replace("'", "''")}', 
-               {int.Parse(textBox2.Text)}, 
-               '{comboBox2.SelectedItem.ToString().Replace("'", "''")}', 
-               '{dateTimePicker1.Value.Date:yyyy-MM-dd}', 
-               {decimal.Parse(textBox4.Text)})");
+                    $@"INSERT INTO [office management studio].[dbo].[Make Order] ([Client Id], [Order item], [Quantity], [Quality], [Deadline], [Total price]) 
+                     VALUES ('{textBox1.Text.Replace("'", "''")}', 
+                              '{comboBox1.SelectedItem.ToString().Replace("'", "''")}', 
+                               {int.Parse(textBox2.Text)}, 
+                              '{comboBox2.SelectedItem.ToString().Replace("'", "''")}', 
+                              '{dateTimePicker1.Value.Date:yyyy-MM-dd}', 
+                               {decimal.Parse(textBox4.Text)})");
 
                     if (rowsAffected > 0)
                     {
