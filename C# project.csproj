@@ -110,6 +110,12 @@
     <Compile Include="HR\EmpApplication.Designer.cs">
       <DependentUpon>EmpApplication.cs</DependentUpon>
     </Compile>
+    <Compile Include="HR\EmpDetails.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HR\EmpDetails.Designer.cs">
+      <DependentUpon>EmpDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="HR\Hr Dash.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -189,6 +195,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HR\EmpApplication.resx">
       <DependentUpon>EmpApplication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HR\EmpDetails.resx">
+      <DependentUpon>EmpDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HR\Hr Dash.resx">
       <DependentUpon>Hr Dash.cs</DependentUpon>

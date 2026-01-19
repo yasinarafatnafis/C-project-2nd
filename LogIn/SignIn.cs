@@ -116,14 +116,7 @@ namespace C__project.LogIn
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Log_in form = this.FindForm() as Log_in;
-            if (form != null)
-            {
-                form.LoadControl(new SignUp());
-            }
-        }
+        
 
         private void label2_Click(object sender, EventArgs e)
         {
@@ -153,6 +146,15 @@ namespace C__project.LogIn
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Log_in form = this.FindForm() as Log_in;
+            if (form != null)
+            {
+                form.LoadControl(new SignUp());
+            }
         }
     }
 

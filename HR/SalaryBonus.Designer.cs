@@ -167,11 +167,11 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 322);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 341);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(946, 385);
+            this.dataGridView1.Size = new System.Drawing.Size(1005, 269);
             this.dataGridView1.TabIndex = 26;
             // 
             // comboBox1
@@ -282,7 +282,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label4);
             this.Name = "SalaryBonus";
-            this.Size = new System.Drawing.Size(952, 710);
+            this.Size = new System.Drawing.Size(1011, 637);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();

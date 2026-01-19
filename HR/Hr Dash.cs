@@ -253,5 +253,15 @@ namespace C__project
         {
 
         }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            LoadControlInPanel(new EmpApplication());
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            LoadControlInPanel(new EmpDetails());
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace C__project.HR
 {
-    partial class EmpApplication
+    partial class EmpDetails
     {
         /// <summary> 
         /// Required designer variable.
@@ -34,23 +34,22 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.Bisque;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.Azure;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.GridColor = System.Drawing.Color.OldLace;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 122);
+            this.dataGridView1.Location = new System.Drawing.Point(4, 72);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1005, 353);
+            this.dataGridView1.Size = new System.Drawing.Size(1004, 456);
             this.dataGridView1.TabIndex = 0;
             // 
-            // EmpApplication
+            // EmpDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Coral;
+            this.BackColor = System.Drawing.Color.DarkCyan;
             this.Controls.Add(this.dataGridView1);
-            this.Name = "EmpApplication";
+            this.Name = "EmpDetails";
             this.Size = new System.Drawing.Size(1011, 637);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
