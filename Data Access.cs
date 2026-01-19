@@ -6,11 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Flourish___Blotts
+namespace C__project
 {
     internal class DataAccess
     {
-
         private SqlConnection sqlcon;
         public SqlConnection Sqlcon
         {
@@ -39,13 +38,10 @@ namespace Flourish___Blotts
             set { this.ds = value; }
         }
 
-        //internal DataTable dt;
-
-
-        //**you can put your own database connection string here to test the project**
         public DataAccess()
         {
-            this.Sqlcon = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Application Name=""SQL Server Management Studio"";Command Timeout=0");
+            // Use default database connection - let LocalDB determine the database
+            this.Sqlcon = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Integrated Security=True");
             Sqlcon.Open();
         }
 
@@ -56,7 +52,7 @@ namespace Flourish___Blotts
 
         public DataSet ExecuteQuery(string sql)
         {
-            this.Sqlcom = new SqlCommand(sql, this.Sqlcon);//this.QueryText(sql);
+            this.Sqlcom = new SqlCommand(sql, this.Sqlcon);
             this.Sda = new SqlDataAdapter(this.Sqlcom);
             this.Ds = new DataSet();
             this.Sda.Fill(this.Ds);
@@ -65,7 +61,7 @@ namespace Flourish___Blotts
 
         public DataTable ExecuteQueryTable(string sql)
         {
-            this.Sqlcom = new SqlCommand(sql, this.Sqlcon);//this.QueryText(sql);
+            this.Sqlcom = new SqlCommand(sql, this.Sqlcon);
             this.Sda = new SqlDataAdapter(this.Sqlcom);
             this.Ds = new DataSet();
             this.Sda.Fill(this.Ds);
@@ -74,7 +70,7 @@ namespace Flourish___Blotts
 
         public int ExecuteDMLQuery(string sql)
         {
-            this.Sqlcom = new SqlCommand(sql, this.Sqlcon);//this.QueryText(sql);
+            this.Sqlcom = new SqlCommand(sql, this.Sqlcon);
             int u = this.Sqlcom.ExecuteNonQuery();
             return u;
         }
