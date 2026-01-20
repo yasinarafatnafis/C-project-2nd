@@ -12,7 +12,7 @@ namespace C__project.Client
 {
     public partial class Order_details : Form
     {
-        private DataAccess dataAccess = new DataAccess();
+        private readonly DataAccess dataAccess = new DataAccess();
 
         public Order_details()
         {
@@ -60,7 +60,7 @@ namespace C__project.Client
             // Optional: Handle cell clicks if needed
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
 
         }
