@@ -21,21 +21,22 @@ namespace C__project.HR
             InitializeComponent();
             LoadEmployeeData();
         }
-    private void LoadEmployeeData()
-    {
-        string query = @"
-        SELECT 
-            Username,
-            Name,
-            Address,
-            DateOfBirth,
-            JobPost
-        FROM Employee";
+        private void LoadEmployeeData()
+        {
+            string query = @"
+    SELECT 
+        EmpId,
+        Name,
+        Address,
+        DateOfBirth,
+        JobPost,
+        Password
+    FROM Employee";
 
-        dataGridView1.DataSource = da.ExecuteQueryTable(query);
-    }
+            dataGridView1.DataSource = da.ExecuteQueryTable(query);
+        }
 
-    private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             Hr_Dash form = this.FindForm() as Hr_Dash;
             if (form != null)
@@ -45,6 +46,11 @@ namespace C__project.HR
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EmpDetails_Load(object sender, EventArgs e)
         {
 
         }

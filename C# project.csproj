@@ -137,11 +137,11 @@
     <Compile Include="HR\Hr Dash.Designer.cs">
       <DependentUpon>Hr Dash.cs</DependentUpon>
     </Compile>
-    <Compile Include="HR\NoticeBoard.cs">
+    <Compile Include="HR\HrNotice.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="HR\NoticeBoard.Designer.cs">
-      <DependentUpon>NoticeBoard.cs</DependentUpon>
+    <Compile Include="HR\HrNotice.Designer.cs">
+      <DependentUpon>HrNotice.cs</DependentUpon>
     </Compile>
     <Compile Include="HR\OrderView.cs">
       <SubType>UserControl</SubType>
@@ -226,8 +226,8 @@
     <EmbeddedResource Include="HR\Hr Dash.resx">
       <DependentUpon>Hr Dash.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HR\NoticeBoard.resx">
-      <DependentUpon>NoticeBoard.cs</DependentUpon>
+    <EmbeddedResource Include="HR\HrNotice.resx">
+      <DependentUpon>HrNotice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HR\OrderView.resx">
       <DependentUpon>OrderView.cs</DependentUpon>
@@ -289,6 +289,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back_8806556.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

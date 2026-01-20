@@ -16,7 +16,32 @@ namespace C__project.HR
         public OrderView()
         {
             InitializeComponent();
+            this.Load += OrderView_Load;
         }
+
+        private void OrderView_Load(object sender, EventArgs e)
+        {
+            LoadOrders();
+        }
+
+        private void LoadOrders()
+        {
+            DataAccess da = new DataAccess();
+
+            string query = @"
+    SELECT
+        [Client Id],
+        [Order item],
+        Quantity,
+        Quality,
+        Deadline,
+        [Total price]
+    FROM [Make Order]";
+
+            dataGridView1.DataSource = da.ExecuteQueryTable(query);
+        }
+
+        
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

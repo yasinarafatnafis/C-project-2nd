@@ -100,6 +100,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "EmpDetails";
             this.Size = new System.Drawing.Size(1011, 637);
+            this.Load += new System.EventHandler(this.EmpDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);

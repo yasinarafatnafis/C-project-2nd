@@ -220,7 +220,7 @@ namespace C__project.HR
         private void button2_Click_1(object sender, EventArgs e)
         {
             CalculateTotalSalary();
-    MessageBox.Show("Total Salary Calculated");
+    
         }
     }
 }

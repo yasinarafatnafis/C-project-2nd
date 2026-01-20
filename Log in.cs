@@ -20,10 +20,7 @@ namespace C__project
             InitializeComponent();
         }
 
-        private void Log_in_Load(object sender, EventArgs e)
-        {
-            LoadControl(new SignIn());
-        }
+        
 
         public void LoadControl(UserControl uc)
         {
@@ -32,6 +29,10 @@ namespace C__project
             panel2.Controls.Add(uc);
         }
 
+        public void ShowSignIn()
+        {
+            LoadControl(new SignIn());
+        }
 
 
 

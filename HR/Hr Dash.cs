@@ -210,6 +210,7 @@ namespace C__project
                     {
                         existingLogin.Show();
                         existingLogin.BringToFront();
+                        existingLogin.ShowSignIn();
                     }
                     else
                     {
@@ -255,7 +256,7 @@ namespace C__project
 
         private void button4_Click_1(object sender, EventArgs e)
         {
-            LoadControlInPanel(new NoticeBoard());
+            LoadControlInPanel(new HrNotice());
 
 
         }
