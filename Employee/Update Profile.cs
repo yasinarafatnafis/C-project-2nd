@@ -53,11 +53,9 @@ namespace C__project.Employee
                 {
                     DataRow row = dt.Rows[0];
                     
-                    // Populate the form fields with existing data
                     textBox2.Text = row["Name"].ToString();
                     textBox3.Text = row["Address"].ToString();
                     
-                    // Handle DateOfBirth conversion
                     if (DateTime.TryParse(row["DateOfBirth"].ToString(), out DateTime dob))
                     {
                         dateTimePicker1.Value = dob;
@@ -81,7 +79,6 @@ namespace C__project.Employee
         {
             try
             {
-                // Validate input fields
                 if (string.IsNullOrWhiteSpace(textBox1.Text))
                 {
                     MessageBox.Show("Please enter Employee ID.", "Validation Error", 
@@ -106,13 +103,11 @@ namespace C__project.Employee
                     return;
                 }
 
-                // Prepare data for update
                 string empId = textBox1.Text.Trim();
                 string name = textBox2.Text.Trim();
                 string address = textBox3.Text.Trim();
                 string dateOfBirth = dateTimePicker1.Value.ToString("yyyy-MM-dd");
 
-                // First check if employee exists
                 string checkQuery = $@"SELECT COUNT(*) FROM Employee 
                                      WHERE EmpId = '{empId.Replace("'", "''")}'";
 
@@ -126,7 +121,6 @@ namespace C__project.Employee
                     return;
                 }
 
-                // Perform the update
                 string updateQuery = $@"UPDATE Employee 
                                       SET Name = '{name.Replace("'", "''")}', 
                                           Address = '{address.Replace("'", "''")}', 
@@ -140,7 +134,6 @@ namespace C__project.Employee
                     MessageBox.Show("Employee profile updated successfully!", 
                                   "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     
-                    // Optionally clear the form after successful update
                     ClearForm();
                 }
                 else
@@ -167,7 +160,7 @@ namespace C__project.Employee
 
         private void button2_Click(object sender, EventArgs e)
         {
-            _dash.Show();   
+            _dash.Show();  
             this.Close();
         }
 

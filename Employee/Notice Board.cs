@@ -33,16 +33,13 @@ namespace C__project
                 DataTable noticeData = dataAccess.ExecuteQueryTable(query);
                 dataGridView1.DataSource = noticeData;
 
-                // Optional: Format the DataGridView for better appearance
                 if (dataGridView1.Columns.Count > 0)
                 {
                     dataGridView1.Columns["Description"].HeaderText = "Notice Description";
                     dataGridView1.Columns["NoticeDate"].HeaderText = "Notice Date";
                     
-                    // Auto resize columns to fit content
                     dataGridView1.AutoResizeColumns();
                     
-                    // Make the Description column wider if needed
                     if (dataGridView1.Columns["Description"] != null)
                     {
                         dataGridView1.Columns["Description"].Width = 400;
@@ -58,13 +55,12 @@ namespace C__project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            _dash.Show();   
+            _dash.Show();  
             this.Close();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
         }
     }
 }
