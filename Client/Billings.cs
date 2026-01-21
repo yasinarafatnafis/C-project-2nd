@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -45,10 +45,10 @@ namespace C__project.Client
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // Search and Update Payment
+            
             try
             {
-                // Validate Client ID input
+                
                 if (string.IsNullOrWhiteSpace(textBox1.Text))
                 {
                     MessageBox.Show("Please enter Client ID.", "Validation Error", 
@@ -56,7 +56,7 @@ namespace C__project.Client
                     return;
                 }
 
-                // Validate Payment input
+                
                 if (string.IsNullOrWhiteSpace(textBox2.Text) || 
                     !decimal.TryParse(textBox2.Text, out decimal paymentAmount) || 
                     paymentAmount <= 0)
@@ -68,7 +68,7 @@ namespace C__project.Client
 
                 string clientId = textBox1.Text;
 
-                // First, get the total price from the Make Order table
+                
                 string getTotalPriceQuery = @"SELECT [Total price] 
                                             FROM [office management studio].[dbo].[Make Order] 
                                             WHERE [Client Id] = '" + clientId.Replace("'", "''") + "'";
@@ -84,7 +84,7 @@ namespace C__project.Client
 
                 decimal totalPrice = Convert.ToDecimal(orderData.Rows[0]["Total price"]);
 
-                // Check if billing record exists for this client
+                
                 string checkBillingQuery = @"SELECT [Payment], [Payable] 
                                            FROM [office management studio].[dbo].[Billings] 
                                            WHERE [Client Id] = '" + clientId.Replace("'", "''") + "'";
@@ -96,12 +96,12 @@ namespace C__project.Client
 
                 if (billingData.Rows.Count > 0)
                 {
-                    // Update existing billing record
+                    
                     currentPayment = Convert.ToDecimal(billingData.Rows[0]["Payment"]);
                     decimal newPayment = currentPayment + paymentAmount;
                     decimal newPayable = totalPrice - newPayment;
 
-                    // Ensure payable doesn't go negative
+                    
                     if (newPayable < 0)
                     {
                         MessageBox.Show($"Payment amount exceeds remaining balance. Maximum payable amount is ${totalPrice - currentPayment:F2}", 
@@ -126,7 +126,7 @@ namespace C__project.Client
                     // Create new billing record
                     decimal newPayable = totalPrice - paymentAmount;
 
-                    // Ensure payable doesn't go negative
+                    
                     if (newPayable < 0)
                     {
                         MessageBox.Show($"Payment amount exceeds total order amount. Maximum payable amount is ${totalPrice:F2}", 
@@ -147,7 +147,7 @@ namespace C__project.Client
                     }
                 }
 
-                // Clear input fields and refresh data
+                
                 textBox1.Text = "";
                 textBox2.Text = "";
                 LoadOrderDetails();

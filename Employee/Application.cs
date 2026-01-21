@@ -25,7 +25,7 @@ namespace C__project.Employee
         {
             try
             {
-                // Validate input fields
+                
                 if (string.IsNullOrWhiteSpace(textBox1.Text))
                 {
                     MessageBox.Show("Please enter Employee ID.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -47,7 +47,7 @@ namespace C__project.Employee
                     return;
                 }
 
-                // Parse Employee ID
+                
                 if (!int.TryParse(textBox1.Text.Trim(), out int empId))
                 {
                     MessageBox.Show("Employee ID must be a valid number.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -55,7 +55,7 @@ namespace C__project.Employee
                     return;
                 }
 
-                // Get connection string from App.config
+                // connection string !!!!!!!!!!!!!!!!!!!!!!!
                 string connectionString = ConfigurationManager.ConnectionStrings["OfficeDB"].ConnectionString;
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -67,7 +67,7 @@ namespace C__project.Employee
 
                     using (SqlCommand command = new SqlCommand(insertQuery, connection))
                     {
-                        // Add parameters to prevent SQL injection
+
                         command.Parameters.AddWithValue("@EmpId", empId);
                         command.Parameters.AddWithValue("@EmpName", textBox2.Text.Trim());
                         command.Parameters.AddWithValue("@AppliTXT", richTextBox1.Text.Trim());
@@ -79,7 +79,7 @@ namespace C__project.Employee
                         {
                             MessageBox.Show("Application submitted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             
-                            // Clear the form after successful submission
+                            
                             ClearForm();
                         }
                         else
@@ -110,8 +110,8 @@ namespace C__project.Employee
 
         private void button2_Click(object sender, EventArgs e)
         {
-            _dash.Show();   // আগের dashboard দেখাও
-            this.Close();   // এই form বন্ধ করো
+            _dash.Show();   
+            this.Close();   
         }
     }
 }
