@@ -141,7 +141,7 @@ namespace C__project.Employee
             this.Controls.Add(this.label1);
             this.Name = "Update_Profile";
             this.Text = "Update_Profile";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Update_Profile_FormClosing);
+            
             this.ResumeLayout(false);
             this.PerformLayout();
 

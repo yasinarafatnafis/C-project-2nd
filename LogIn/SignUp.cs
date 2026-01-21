@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -33,9 +33,9 @@ namespace C__project.LogIn
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string clientId = textBox1.Text.Trim();   // UserID / Email
-            string username = textBox2.Text.Trim();   // Name
-            string password = textBox3.Text.Trim();   // Password
+            string clientId = textBox3.Text.Trim();   // UserID / Email
+            string username = textBox1.Text.Trim();   // Name
+            string password = textBox2.Text.Trim();   // Password
 
             if (clientId == "" || username == "" || password == "")
             {

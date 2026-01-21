@@ -14,9 +14,11 @@ namespace C__project.Employee
 {
     public partial class Application : Form
     {
-        public Application()
+        private Employee_Dash _dash;
+        public Application(Employee_Dash dash)
         {
             InitializeComponent();
+            _dash = dash;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -108,12 +110,8 @@ namespace C__project.Employee
 
         private void button2_Click(object sender, EventArgs e)
         {
-            // Navigate to Employee Dashboard
-            Employee_Dash employeeDashForm = new Employee_Dash();
-            employeeDashForm.Show();
-            
-            // Close the current Application form
-            this.Close();
+            _dash.Show();   // আগের dashboard দেখাও
+            this.Close();   // এই form বন্ধ করো
         }
     }
 }

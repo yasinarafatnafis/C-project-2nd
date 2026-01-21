@@ -13,10 +13,12 @@ namespace C__project
     public partial class Notice_Board : Form
     {
         private DataAccess dataAccess;
+        private Employee_Dash _dash;
 
-        public Notice_Board()
+        public Notice_Board(Employee_Dash dash)
         {
             InitializeComponent();
+            _dash = dash;
             dataAccess = new DataAccess();
             LoadNoticeData();
         }
@@ -56,11 +58,7 @@ namespace C__project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // Create and show the Employee Dashboard form
-            Employee_Dash employeeDashForm = new Employee_Dash();
-            employeeDashForm.Show();
-            
-            // Close the current Notice Board form
+            _dash.Show();   // আগের dashboard
             this.Close();
         }
 

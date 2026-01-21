@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -38,7 +38,7 @@ namespace C__project.Client
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading order details: {ex.Message}", "Database Error", 
+                MessageBox.Show($"Error loading order details: {ex.Message}", "Database Error",
                               MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -65,6 +65,7 @@ namespace C__project.Client
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
 
-        //}
+            //}
+        }
     }
 }

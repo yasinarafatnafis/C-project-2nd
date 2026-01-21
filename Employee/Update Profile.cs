@@ -13,13 +13,13 @@ namespace C__project.Employee
     public partial class Update_Profile : Form
     {
         private DataAccess dataAccess;
+        private Employee_Dash _dash;
 
-        public Update_Profile()
+        public Update_Profile(Employee_Dash dash)
         {
             InitializeComponent();
+            _dash = dash;
             dataAccess = new DataAccess();
-            
-            // Add event handler to load employee data when Employee ID is entered
             textBox1.Leave += LoadEmployeeData;
         }
 
@@ -167,14 +167,10 @@ namespace C__project.Employee
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Employee_Dash employeeDash = new Employee_Dash();
-            employeeDash.Show();
-            this.Hide();
+            _dash.Show();   // আগের dashboard
+            this.Close();
         }
 
-        private void Update_Profile_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            System.Windows.Forms.Application.Exit();
-        }
+        
     }
 }

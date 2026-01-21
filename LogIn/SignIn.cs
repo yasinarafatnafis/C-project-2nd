@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -65,7 +65,7 @@ namespace C__project.LogIn
                     {
                         query = $@"
                 SELECT * FROM dbo.Client
-                WHERE Username = '{username.Replace("'", "''")}'
+                WHERE ClientId = '{username.Replace("'", "''")}'
                 AND Password = '{password.Replace("'", "''")}'";
 
                         dt = da.ExecuteQueryTable(query);
@@ -74,7 +74,11 @@ namespace C__project.LogIn
                         {
                             Client_Dash cli = new Client_Dash();
                             cli.Show();
-                            this.Hide();
+                            Log_in loginForm = this.FindForm() as Log_in;
+                            if (loginForm != null)
+                            {
+                                loginForm.Hide();
+                            }
                         }
                         else
                         {
@@ -97,7 +101,11 @@ namespace C__project.LogIn
                         {
                             Hr_Dash hr = new Hr_Dash();
                             hr.Show();
-                            this.Hide();
+                            Log_in loginForm = this.FindForm() as Log_in;
+                            if (loginForm != null)
+                            {
+                                loginForm.Hide();
+                            }
                         }
                         else
                         {
@@ -120,7 +128,11 @@ namespace C__project.LogIn
                         {
                             Employee_Dash emp = new Employee_Dash();
                             emp.Show();
-                            this.Hide();
+                            Log_in loginForm = this.FindForm() as Log_in;
+                            if (loginForm != null)
+                            {
+                                loginForm.Hide();
+                            }
                         }
                         else
                         {

@@ -85,7 +85,7 @@ namespace C__project
             this.Controls.Add(this.button1);
             this.Name = "Employee_Dash";
             this.Text = "Employee_Dash";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Employee_Dash_FormClosing);
+            
             this.ResumeLayout(false);
 
         }
