@@ -67,6 +67,9 @@ namespace C__project
 
         }
 
-       
+        private void Employee_Dash_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
