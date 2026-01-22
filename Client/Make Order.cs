@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using static System.Collections.Specialized.BitVector32;
@@ -7,10 +8,34 @@ using static System.Collections.Specialized.BitVector32;
 namespace C__project.Client
 {
     public partial class Make_Order : Form
+
     {
+        private int CreateOrderHeader(string userId, DateTime deadline, decimal grandTotal)
+        {
+            string sql = $@"
+INSERT INTO [OfficeManagement].[dbo].[Orders]
+(UserId, Deadline, OrderDate, Status, TotalPrice, Payable, Payment)
+VALUES
+(
+ '{userId.Replace("'", "''")}',
+ '{deadline:yyyy-MM-dd}',
+ GETDATE(),
+ 'Pending',
+ {grandTotal.ToString(System.Globalization.CultureInfo.InvariantCulture)},
+ {grandTotal.ToString(System.Globalization.CultureInfo.InvariantCulture)},
+ 0
+);
+
+SELECT CAST(SCOPE_IDENTITY() AS INT) AS OrderId;
+";
+
+            DataTable dt = dataAccess.ExecuteQueryTable(sql);
+            return Convert.ToInt32(dt.Rows[0]["OrderId"]);
+        }
+
 
         //abcd
-        
+
         private DataAccess dataAccess = new DataAccess();
 
         
@@ -98,79 +123,67 @@ namespace C__project.Client
             }
 
             string userId = Session.UserId;
-            DateTime deadline = dateTimePicker1.Value;
-
-            decimal grandTotal = 0;
-            decimal lastPricePerUnit = 0;
-
-            DataAccess da = new DataAccess();
+            DateTime deadline = dateTimePicker1.Value.Date;
 
             try
             {
+                // 1) Calculate grand total from the grid
+                decimal grandTotal = 0m;
+
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.IsNewRow) continue;
+                    grandTotal += Convert.ToDecimal(row.Cells["TotalPrice"].Value);
+                }
+
+                // 2) Create ONE order header and get ONE OrderId
+                int orderId = CreateOrderHeader(userId, deadline, grandTotal);
+
+                // 3) Insert all items using same OrderId into OrderItems
+                int insertedLines = 0;
+
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
                     if (row.IsNewRow) continue;
 
-                    string item = row.Cells[0].Value.ToString();
-                    string quality = row.Cells[1].Value.ToString();
-                    int quantity = Convert.ToInt32(row.Cells[2].Value);
-                    decimal pricePerUnit = Convert.ToDecimal(row.Cells[3].Value);
-                    decimal totalPrice = Convert.ToDecimal(row.Cells[4].Value);
+                    string itemName = row.Cells["OrderItem"].Value.ToString(); // grid column
+                    string quality = row.Cells["Quality"].Value.ToString();
+                    int quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
 
-                    // 🔹 calculate totals
-                    grandTotal += totalPrice;
-                    lastPricePerUnit = pricePerUnit;
+                    decimal pricePerUnit = Convert.ToDecimal(row.Cells["PricePerUnit"].Value);
+                    decimal lineTotal = Convert.ToDecimal(row.Cells["TotalPrice"].Value);
 
-                    // 🔹 insert each item
-                    string insertQuery = $@"
-INSERT INTO OfficeManagement.dbo.Orders
-(
-    UserId,
-    OrderItem,
-    Quality,
-    Quantity,
-    PricePerUnit,
-    TotalPrice,
-    Deadline,
-    OrderDate,
-    Status,
-    Payable,
-    Payment
-)
+                    string insertItemSql = $@"
+INSERT INTO [OfficeManagement].[dbo].[OrderItems]
+(OrderId, ItemName, Quality, Quantity, PricePerUnit, LineTotal)
 VALUES
 (
-    '{userId}',
-    '{item.Replace("'", "''")}',
-    '{quality.Replace("'", "''")}',
-    {quantity},
-    {pricePerUnit},
-    {totalPrice},
-    '{deadline:yyyy-MM-dd}',
-    GETDATE(),
-    'Pending',
-    {totalPrice},  -- Payable starts as total
-    0              -- Payment starts 0
-)";
+ {orderId},
+ '{itemName.Replace("'", "''")}',
+ '{quality.Replace("'", "''")}',
+ {quantity},
+ {pricePerUnit.ToString(System.Globalization.CultureInfo.InvariantCulture)},
+ {lineTotal.ToString(System.Globalization.CultureInfo.InvariantCulture)}
+);";
 
-
-                    da.ExecuteDMLQuery(insertQuery);
+                    insertedLines += dataAccess.ExecuteDMLQuery(insertItemSql);
                 }
 
-                // 🟢 2. Show totals in textbox
-                textBox3.Text = lastPricePerUnit.ToString("F2");
-                textBox4.Text = grandTotal.ToString("F2");
+                MessageBox.Show($"Order placed successfully!\nOrder ID: {orderId}\nItems: {insertedLines}",
+                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                MessageBox.Show("Order placed successfully");
-
-                // 🧹 clear after order
+                // Clear UI
                 dataGridView1.Rows.Clear();
                 ClearForm();
+                textBox3.Clear();
+                textBox4.Clear();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error placing order:\n" + ex.Message);
             }
         }
+
 
         private void ClearForm()
         {

@@ -25,33 +25,33 @@ namespace C__project.Client
             try
             {
                 string query = $@"
-                    SELECT
-                        OrderId,
-                        OrderItem      AS [Item],
-                        Quality,
-                        Quantity,
-                        PricePerUnit   AS [Unit Price],
-                        TotalPrice     AS [Total],
-                        Deadline,
-                        OrderDate,
-                        Status,
-                        Payable,
-                        Payment,
-                        PaymentDate
-                    FROM Orders
-                    WHERE UserId = '{Session.UserId}'
-                    ORDER BY OrderDate DESC";
+SELECT
+    o.OrderId,
+    i.ItemName      AS [Item],
+    i.Quality,
+    i.Quantity,
+    i.PricePerUnit  AS [Unit Price],
+    i.LineTotal     AS [Total],
+    o.Deadline,
+    o.OrderDate,
+    o.Status,
+    o.Payable,
+    o.Payment,
+    o.PaymentDate
+FROM OfficeManagement.dbo.Orders o
+LEFT JOIN OfficeManagement.dbo.OrderItems i
+    ON o.OrderId = i.OrderId
+WHERE o.UserId = '{Session.UserId}'
+ORDER BY o.OrderDate DESC, o.OrderId DESC;";
 
                 DataTable orderData = dataAccess.ExecuteQueryTable(query);
                 dataGridView1.DataSource = orderData;
-
-                // optional: make it look nicer
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error loading order details: " + ex.Message, "Database Error",
-                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
