@@ -29,7 +29,7 @@ namespace C__project.HR
             DataAccess da = new DataAccess();
 
             string query = @"
-        SELECT
+        SELECT TOP (1000)
             OrderId,
             UserId,
             OrderItem,
@@ -39,8 +39,11 @@ namespace C__project.HR
             TotalPrice,
             Deadline,
             OrderDate,
-            Status
-        FROM Orders
+            Status,
+            Payable,
+            Payment,
+            PaymentDate
+        FROM [OfficeManagement].[dbo].[Orders]
         ORDER BY OrderDate DESC";
 
             dataGridView1.DataSource = da.ExecuteQueryTable(query);
